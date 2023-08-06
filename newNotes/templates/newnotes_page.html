@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<script
+  src="{% static '/js/notes_js.js' %}"
+  defer
+></script>
+<script 
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" 
+crossorigin="anonymous">
+</script>
+
+<style>
+  p{
+    font-family: "Manrope";
+  }
+  h{
+    font-family: "Mulish";
+  }
+</style>
+
+<html lang="en">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+<title>Notes | JoyFulTimes</title>
+
+
+
+<body class="d-flex flex-column" style="margin-top: 160px; min-height: fit-content;">
+    <div class="container text-center" style="margin-bottom: 10px;">
+        <h1 class="title" style = "color:#01010e; text-align: center; font-family:Mulish; color: #2B4560; font-weight: bolder; font-size: 48px;">Happy Notes</h1>
+        <hr>
+        <p class="sub">"There is hope, even when your brain tells you there isn't."</p> 
+        <p class="sub"> ~ John Green</p>       
+        <div id="notesCard" class="row"></div>
+        <p class="sub">"You have to hands. One to help yourself, and one to help others." ~ Audrey Hepburn</p> 
+        <p class="sub">Send your kindness with words...</p>
+        {% if user.is_authenticated %}
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="text-center">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalCreate" style="margin:20px 20px; background-color:#2F6D80;">Send a Note</button>
+            <a class="btn btn-secondary" href="{% url 'newNotes:get_notes_all' %}" style="margin:10px 20px; background-color: #2F6D80;" role="button">Show My Notes</a>
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalCreate" style="margin:20px 20px; background-color:#2F6D80;">Send a Note</button>
+        {% endif %}
+    </div>
+</body>
+
+<div class="modal fade" id="modalCreate" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Notes</h5>
+        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="">
+          <form method="POST" id="post-form">
+            {% if user.is_authenticated %}
+            {% csrf_token %}
+            {% for atributes in form %}
+              <b>{{atributes.label_tag}}</b>
+              <p>{{ atributes }} </p>
+            {% endfor %}
+            <input type="submit" name="submit" value="Create">
+            {% else %}
+            <p>Login to send a note ^_^</p>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    loadJson();
+  })
+
+
+  function loadJson(){
+    let isi= "";
+    $.ajax({
+    type: "GET",
+    url: "{% url 'newNotes:notes_json' %}",
+    dataType: "json",
+    contentType: "application/json; charset= UTF-8",
+    success: function (response) {
+
+       //alert("Successfully Inserted");
+       //alert(JSON.stringify(response));      
+       for(let i of response){
+        isi += `
+        
+            <div class="card shadow border-0 bg-light" style="margin:10px 0px 10px 0px;">
+              <div class="card-header" style="font-weight:bold; float:left; font-size: larger;">
+                <p>${i.fields.title}</p>
+              </div>
+              <div class="card-body" style="text-align:left;">
+                <blockquote class="blockquote mb-0">
+                   <p>${i.fields.notes}</p>
+                   <footer class="blockquote-footer"> ${i.fields.sender}</footer>
+                </blockquote>
+               </div>
+            </div>    
+         
+        `;
+        $("#notesCard").html(isi);
+       }    
+    },
+    error: function (error) {
+        console.log(error);
+        alert("Error!!");
+    }
+});
+  }
+
+  $(document).on('submit', '#post-form', function(e){
+    $.ajax({
+        method:'POST',
+        url:'{% url "newNotes:create_notes" %}',
+        data: $('#post-form').serialize(),
+        dataType: "json",
+        success:function(){
+            loadJson();
+        },
+    });
+  });
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+</html>
+{% endblock content %}
