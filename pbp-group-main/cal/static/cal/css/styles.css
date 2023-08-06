@@ -1,0 +1,199 @@
+/* Common styles */
+@import url('https://fonts.googleapis.com/css?family=Mulish');
+@import url('https://fonts.googleapis.com/css?family=Manrope');
+@import url('//fonts.googleapis.com/css?family=Playfair+Display');
+
+body {
+  margin-top: 100px;
+  font-family: var(--bs-body-font-family);
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
+  color: var(--bs-body-color);
+  text-align: var(--bs-body-text-align);
+}
+
+.card {
+background-color: #2b456073;
+width: 98%;
+height: 10%;
+margin: auto;
+}
+
+
+.navbar-brand {
+  letter-spacing: 3px;
+  font-size: 2rem;
+  font-weight: 500;
+  }
+.navbar-brand, .nav-link, .fa-bars {
+  color: #fff;
+  }
+  
+.navbar-brand, .nav-link:hover {
+    color: rgba(255, 255, 255, 0.683);
+  }
+  
+  
+  
+  @media (min-width: 550px) and (max-width: 750px) {
+  #intro {
+    height: 1100px !important;
+  }
+  }
+  
+  @media (min-width: 800px) and (max-width: 990px) {
+  #intro {
+    height: 600px !important;
+  }
+  }
+  
+  .display-1 {
+  font-weight: 500 !important;
+  letter-spacing: 40px;
+  }
+  
+  @media (min-width: 1600px) {
+  .display-1 {
+    font-size: 10rem;
+  }
+  }
+
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.btn1right {
+  outline: none;
+  color: #E1E7E0;
+  background-color: #afb06a;
+  margin-left: 55%;
+  cursor: pointer;
+  text-align: center;
+  display:inline-block;
+  width: 10%;
+  padding: 3px;
+  border-radius: 7px;
+  font-family: Mulish;
+  box-shadow: 3px 1px 10px 0px rgba(0,0,0,0.75);
+  font-size: 100%;
+}
+.btnleft {
+  outline: none;
+  color: #E1E7E0;
+  background-color: #6AA4B0;
+  box-shadow: 0 0 0 0;
+  margin-left: 4%;
+  cursor: pointer;
+  text-align: center;
+  display:inline-block;
+  width: 10%;
+  padding: 3px;
+  border-radius: 7px;
+  box-shadow: 3px 1px 10px 0px rgba(0,0,0,0.75);
+  font-family: Mulish;
+  font-size: 100%;
+}
+
+.btnleft1 {
+  outline: none;
+  color: #E1E7E0;
+  background-color: #6AA4B0;
+  box-shadow: 0 0 0 0;
+  margin-left: 2%;
+  cursor: pointer;
+  text-align: center;
+  display:inline-block;
+  width: 10%;
+  padding: 3px;
+  border-radius: 7px;
+  box-shadow: 3px 1px 10px 0px rgba(0,0,0,0.75);
+  font-family: Mulish;
+  font-size: 100%;
+}
+
+.btnleft:hover {
+  background-color: #2F6D80;
+}
+
+.btn1right:hover {
+  background-color: #2F6D80;
+}
+
+.btn2right:hover {
+  background-color: #2F6D80;
+}
+
+.clearfix {
+  margin: 15px;
+}
+
+.form {
+  margin: auto;
+}
+
+.form input, .form select, .form textarea {
+  border-radius: 5px;
+  border: 1px solid #17a2b8;
+  outline: none;
+  background: none;
+  padding: 5px;
+  width: 100%;
+  font-family: Mulish;
+}
+
+/* App styles */
+.title {
+  text-align: center;
+  margin: 10px;
+  font-family: Playfair;
+  font-weight: bold;
+  color: #2B4560;
+}
+
+.calendar {
+  width: 90%;
+  height: 10%;
+  margin: auto;
+  font-size: 13px;
+  background-color: #e1e7e0bd;
+  font-family: Manrope;
+}
+
+.calendar tr, .calendar td {
+  border: 1px solid #2F6D80;
+}
+
+.calendar th {
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.calendar td {
+  width: 200px;
+  height: 100px;
+  padding: 20px 0px 0px 5px;
+}
+
+.month {
+  font-size: 25px;
+}
+
+.date {
+  font-size: 16px;
+}
+
+ul {
+  height: 100%;
+  padding: 0px 5px 0px 20px;
+}
+
+a {
+  color: #2B4560;
+}

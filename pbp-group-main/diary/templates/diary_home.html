@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+  <title>Diary | JoyFulTimes</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+  <div class="container" id="content-section"></div>
+
+  <!-- Modal -->
+  <div class="modal-dialog">
+    <div class="modal fade" id="add-diary-modal" tabindex="-1" aria-labelledby="add-diary-modal-label" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content" style="padding: 10px">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="add-diary-modal-label">Add new diary</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+  
+          <div class="modal-body">
+            <form id="add-diary-form" method="POST">
+              {% csrf_token %}
+              <div class="form-outline mb-4">
+                <input type="text" id="title" name="title" class="form-control mb-4" placeholder="Hari ini aku bahagia" />
+                <textarea class="form-control mb-4" id="body" name="body" rows="10" placeholder="Ungkapkan ceritamu di sini"></textarea>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary" id="submit-diary-btn" style="background-color: #2F6D80;">Add diary</button>
+              </div>
+              
+            </form>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+<script>
+  function createCard(item) {
+    const area = document.getElementById("diary-area");
+
+    var d = new Date(item.fields.date);
+    var wd = new Intl.DateTimeFormat('en', { weekday: 'short' }).format(d); 
+    var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+    var mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+    var da = new Intl.DateTimeFormat('en', { day: 'numeric' }).format(d);
+    var hour = ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+    var res = 'Last modified on ' + wd + ', ' + da + ' ' + mo + ' ' + ye + ' ' + hour;
+
+    area.insertAdjacentHTML('beforeend', '<div class="card shadow border-0 bg-light" style="margin:30px 30px 8px 30px;"><div class="card-body"><a class="text-decoration-none link-dark stretched-link" href="/diary/' + item.pk + '"><h5 class="card-title" id="card-title">' + item.fields.title + '</h5><p class="card-text body" style="display: -webkit-box; max-width: 100%; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">' + item.fields.body + '</p><p class="card-text mb-2 text-muted" id="date">'+ res + '</p></div></div><div style="margin:0px 0px 0px 40px"><a href="edit/' + item.pk + '" style="cursor: pointer; margin-right: 10px;"><i class="fa-solid fa-pen-to-square" style="margin-right: 3px; color: #2F6D80;"></i></a><a href="delete/' + item.pk + '" style="cursor: pointer;"><i class="fa-solid fa-trash" style="color:#D11A2A"></a></div>');
+  }
+  
+
+  
+  function getDiary() {
+    $.ajax({
+      url: "{% url 'diary:json_diary' %}",
+      type: "GET",
+      dataType: "json",
+      success: (items) => {
+        const area = document.getElementById("content-section")
+        if (items.length == 0) {
+          area.insertAdjacentHTML('afterbegin', "<div class='ohno' id='nodiary'><h1 style='text-align: center; margin-top: 30px;'>Ouch, {{username}}!</h1><h4 style='color: #6C757D; text-align: center;'> You don't have any diary! &#128533;</h4><div class='text-center'><button type='button' class='btn btn-primary add-task' data-bs-toggle='modal' data-bs-target='#add-diary-modal' style='border: none; background-color: #2F6D80; margin-bottom: 80px;'> Add new diary </button></div></div>")
+        } else {
+          $("#nodiary").remove();
+          $("#ar").remove()
+          area.insertAdjacentHTML('afterbegin', "<div id='ar'><div class='text-center' id='heading'><h1 class='fw-bolder fs-25 mb-25' id='heading'>My Diary</h1><h5 style='color: #2F6D80;'>My beautiful stories</h5></div><div id='diary-area'></div><div class='text-center'><button type='button' class='btn btn-primary add-task' data-bs-toggle='modal' data-bs-target='#add-diary-modal' style='margin-top: 20px; border: none; background-color: #2F6D80; margin-bottom: 80px;'> Add new diary </button></div></div>")
+          items.map(item => createCard(item));
+          console.log(items);
+          
+        }
+        console.log("berhasil");
+      }
+    })
+  }
+
+  $(document).ready(() => {
+    getDiary();
+
+    $('#add-diary-form').submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        url: "{% url 'diary:add_diary_obj' %}",
+        method: "POST",
+        headers: {"X-CSRFToken": window.CSRF_TOKEN},
+        data: $('#add-diary-form').serialize(),
+        success: (item) => {
+          $('#add-diary-form').trigger('reset');
+          $('#add-diary-modal').modal('hide');
+          console.log(item);
+          getDiary();
+        }
+      })
+    })
+  })
+</script>
+
+
+
+
+{% endblock content %}

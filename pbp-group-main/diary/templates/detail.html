@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <title>Detail | JoyFulTimes</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container mt-5" id="detail-content">
+        <h1 id="detail-title"></h1>
+        <h6 class="opacity-50" id="date"></h6>
+        <hr>
+        <div id="diary-body"></div>
+    
+        <div>
+            <a href="{% url 'diary:show_diary'%}" style="cursor: pointer;"><button type="button" class="btn btn-secondary">Back</button></a>
+            <a href="{% url 'diary:edit' id %}" style="cursor: pointer;"><button type="button" id="edit-button" class="btn btn-primary" style="margin: 0px 20px 0px 5px; background-color: #2F6D80;">Edit</button></a>
+            <a href="{% url 'diary:delete' id %}">
+                <i class="fa-solid fa-trash" style="color:#D11A2A"></i>
+            </a>
+        </div>
+        
+    </div>
+</body>
+
+
+
+<script>
+    const obj = JSON.parse("{{ item|escapejs }}");
+    var date = "{{ date|date:'D, d M Y H:i' }}"
+    document.getElementById("detail-title").innerHTML = obj[0].fields.title;
+    document.getElementById("date").innerHTML = "Last modified on " + date;
+
+    var rawText = obj[0].fields.body;
+    var arr = rawText.split("\n");
+    arr.forEach(element => {
+        if (element != "\r") {
+            document.getElementById("diary-body").insertAdjacentHTML("beforeend", "<p>"+ element + "</p>");
+        }
+    });
+</script>
+
+{% endblock content %}

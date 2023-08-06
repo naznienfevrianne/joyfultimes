@@ -1,0 +1,264 @@
+<style>
+  .btn :not(footer){
+    margin: 0px 1px 0px 1px ;
+  }
+  h1, h2 :not(footer) {
+    font-family: "Mulish"
+  }
+
+  h3, h4 :not(footer) {
+    font-family: "Playfair Display"
+  }
+
+  h5, p :not(footer) {
+    font-family: "Manrope"
+  }
+
+</style>
+
+{% load static %}
+{% block meta %}
+{% endblock meta %}
+{% block content %}
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="We&amp;apos;re Here to Heal You., Iterative Methods, Our Team">
+    <meta name="description" content="">
+    <title>Home | JoyfulTimes</title>
+    <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" media="screen">
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link href='https://fonts.googleapis.com/css?family=Manrope' rel='stylesheet'>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair+Display">
+    <link href='https://fonts.googleapis.com/css?family=Mulish' rel='stylesheet'>
+    <meta name="theme-color" content="#2b4560">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+  </head>
+  <nav class="navbar navbar-expand-lg fixed-top navbar-scroll" style="background-color: #2B4560;">
+    <div class="container-fluid" style="margin-left: 20px;">
+      <a class="navbar-brand" href="{% url 'home:show_home' %}">&#128515; JoyFulTimes</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'forum:Forum' %}">Forum</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'newNotes:get_notes' %}">Notes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cal:calendar' %}">Mood Tracker</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'assessment:assessment' %}">Assesment</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'diary:show_diary' %}">Diary</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav d-flex flex-row">
+        
+          <li class="nav-item me-3 me-lg-0">
+            {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'authentications:logout' %}">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+            {% else %}
+            <a class="btn btn-primary nav-link" href="{% url 'authentications:login' %}" role="button" style="background-color: white; color: #2B4560; margin-right:20px; border:none; padding: 10px 40px 10px 40px;">Login</a>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <body class="u-body u-xl-mode" data-lang="en" style="margin:50px 0px 0px 0px">
+    <section class="u-align-center u-clearfix u-image u-shading u-section-1" src="" data-image-width="1587" data-image-height="2245" id="sec-b6d4">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-title u-text-1" style="font-family:Playfair; font-weight:bold;" >It's time to talk with people who will support you.</h1>
+        <p class="u-large-text u-text u-text-variant u-text-2"> We are a friendly, safe community supporting each other's mental health 24 hours a day, 365 days a year. You are most welcome to&nbsp;<a href="https://www.mentalhealthforum.net/forum/register/" class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1">
+            <span class="u-text-palette-3-base"><b>join</b>
+            </span>
+            <span class="u-text-palette-2-base"></span>
+          </a>&nbsp;today!
+        </p>
+    </section>
+    </div>
+    <section class="u-align-center u-clearfix u-section-2" id="sec-fd3a" style="background-color:#E1E7E0">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-text-default u-text-1" style="font-family:Manrope; font-weight:bold; margin-top: 77px;">About us</h1>
+        <p class="u-text u-text-2">JoyfulTimes provides one-stop access to mental health problems information. JoyfulTimes aims to educate and guide general public and health preparedness professionals.
+        </p>
+      </div>
+    </section>
+    <section class="u-clearfix u-grey-10 u-section-3" id="sec-b137" style="background-color:#E1E7E0">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-expanded-width u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <div class="u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-1" style="border-radius: 10px;">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+                <img alt="" class="u-expanded-width u-image u-image-default u-image-1" data-image-width="2836" data-image-height="1875" style="border-radius: 10px;" src="/static/css/children.jpg">
+                <h4 class="u-text u-text-default u-text-1 mt-5">Children's Mental Health</h4>
+                <p class="u-text u-text-default u-text-2">Being mentally healthy during childhood means reaching developmental and emotional milestones and learning healthy social skills and how to cope when there are problems. Mentally healthy children have a positive quality of life and can function well at home, in school, and in their communities.</p>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item u-white u-list-item-2" style="border-radius: 10px;">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
+                <img alt="" class="u-expanded-width u-image u-image-default u-image-2" data-image-width="2836" data-image-height="1875" style="border-radius: 10px;" src="/static/css/youth.jpg">
+                <h4 class="u-text u-text-default u-text-3 mt-5">Youth's Mental Heath</h4>
+                <p class="u-text u-text-default u-text-4"> Youth with mental health disorders may face challenges in their homes, school, community, and interpersonal relationships. Despite these challenges, for most youth, mental health distress is episodic, not permanent, and most can successfully navigate the challenges that come from experiencing a mental health disorder with treatment, peer and professional supports and services, and a strong family and social support network. </p>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-3" style="border-radius: 10px;">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
+                <img alt="" class="u-expanded-width u-image u-image-default u-image-3" data-image-width="2836" data-image-height="1875" style="border-radius: 10px;" src="/static/css/olders.jpg">
+                <h4 class="u-text u-text-default u-text-5 mt-5">Elders' Mental Health</h4>
+                <p class="u-text u-text-default u-text-6">Mental health problems are common among seniors and may include isolation, affective and anxiety disorders, dementia, and psychosis, among others. Many seniors also suffer from sleep and behavioral disorders, cognitive deterioration or confusion states as a result of physical disorders or surgical interventions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="u-clearfix u-sheet u-sheet-1 mb-4 mt-5">
+            <h2 class="u-text u-text-default u-text-1" style="color: #2B4560; font-family:Playfair; text-align:center; padding:0px 70px 0px 70px; width:100%; font-weight: bold;">What Exactly is “Mental Health”?</h2>
+            <p style="padding:0px 70px 0px 70px; text-align:justify">Good question, because “mental health” can mean different things to different people. Mental health is a continuum that stretches from where we’re feeling good to the other end of the continuum where we’re struggling because of a challenge or a condition like depression. Where we are on that continuum is influenced by various factors. Some we can control (how we take care of ourselves or our support networks) and some we can’t (our genetics or how we were raised). 
+            </p><p style="padding:0px 70px 20px 70px; text-align: justify">When our mental health is strong it can help us thrive. When we’re struggling, we may need to seek out self-care and coping practices, and/or the support of professionals.</p>
+  </div>
+  </section>
+</section>
+<section class="u-align-center u-clearfix u-section-2" >
+  <div class="u-expanded-width u-list u-list-1" style="background-color:#E1E7E0;">
+    <h2 class="u-text u-text-default u-text-1">Make Your Move</h2>
+    <i><p class="u-text u-text-2" style="text-align: center; width:100%"> "You are not your illness. You have an individual story to tell. You have a name, a history, a personality. Staying yourself is part of the battle." — Julian Seifter</p></i>
+  </div>
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <div class="u-expanded-width u-list u-list-1" style="background-color:#ffffff95;">
+          <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+            <h5 class="u-text u-text-6" style="font-family: Playfair Display; font-weight: bold;">Prioritize being present</h5>
+            <p class="u-text u-text-4">Don't let the negative feelings take you down. Breathing exercises, meditation, going for a walk, journaling, making a gratitude list—they can all help us refocus on what’s going on inside. Be consistent and focus on your mind. </p>
+          </div>
+          <hr style="width:55%; align-self: center;">
+          <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+            <h5 class="u-text u-text-3" style="font-family: Playfair Display; font-weight: bold;">Reflect before you react</h5>
+            <p class="u-text u-text-4">Nobody is immune to difficult feelings, overwhelming challenges or the occasional bad day—but we can control how we react to them. In moments of stress, anger or other emotions, It’s important to pause and reflect on the factors that may have influenced those feelings, and the best way to cope with the situation. </p>
+          </div>
+          <hr style="width:55%; align-self: center;">
+          <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+            <h5 class="u-text u-text-3" style="font-family: Playfair Display; font-weight: bold;">Talk about your feelings</h5>
+            <p class="u-text u-text-4">Talking about our emotional struggles almost always helps us start feeling better. Speaking up is a sign of strength, and our friends and family members are usually more understanding and supportive than we thought they’d be. Start by sharing your feelings with someone you trust or reaching out to a counselor or therapist.</p>
+          </div>
+      </div>
+    </div>
+  <br><br><br>
+</section>
+    <section class="u-align-center u-clearfix u-section-4" id="sec-d6d9" style="background-color:#E1E7E0">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <h2 class="u-text u-text-default u-text-1" style="font-family:Manrope; font-weight:bold">Meet Our Team</h2>
+       
+        <div class="u-expanded-width u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <div class="u-align-center u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+                <img alt="" class="u-expanded-width u-image u-image-default u-image-1" data-image-width="150" data-image-height="150" src="/static/css/naz.jpg">
+                <h5 class="u-text u-text-3" style="font-family: Playfair Display; font-weight: bold;">Naznien Fevrianne Malano</h5>
+                <p class="u-text u-text-4">Forum and Home</p>
+              </div>
+            </div>
+            <div class="u-align-center u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
+                <img alt="" class="u-expanded-width u-image u-image-default u-image-2" data-image-width="150" data-image-height="150" src="/static/css/alia.jpg">
+                <h5 class="u-text u-text-5" style="font-family: Playfair Display; font-weight: bold;">Alia Widyanita Puspaningrum</h5>
+                <p class="u-text u-text-6">Mental Health Assesment</p>
+              </div>
+            </div>
+            <div class="u-align-center u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
+                <img alt="" class="u-expanded-width u-image u-image-default u-image-2" data-image-width="150" data-image-height="150" src="/static/css/prita.jpg">
+                <h5 class="u-text u-text-5" style="font-family: Playfair Display; font-weight: bold;">Prita Elisabeth Laura Tarigan</h5>
+                <p class="u-text u-text-6">Daily Mood Tracker and Tips & Trick</p>
+              </div>
+            </div>
+            <div class="u-align-center u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-4">
+                <img alt="" class="u-expanded-width u-image u-image-default u-image-4" data-image-width="150" data-image-height="150" src="/static/css/rey.jpg">
+                <h5 class="u-text u-text-9" style="font-family: Playfair Display; font-weight: bold;">Reyhan Vivaldi Adrian</h5>
+                <p class="u-text u-text-10">Diary and Authentications</p>
+              </div>
+            </div>
+            <div class="u-align-center u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-5">
+                <img alt="" class="u-expanded-width u-image u-image-default u-image-5" data-image-width="150" data-image-height="150" src="/static/css/alif.jpg">
+                <h5 class="u-text u-text-11" style="font-family: Playfair Display; font-weight: bold;">Muhammad Alif Ismady</h5>
+                <p class="u-text u-text-12">Notes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>  
+</body>
+{% include "footer.html" %}
+{% endblock content %}
+</html>
+<style>
+  .btn-primary:hover {
+    background-color: rgb(63, 24, 24);
+  }
+  
+  .navbar-brand {
+  letter-spacing: 3px;
+  font-size: 27px;
+  font-weight: 500;
+  }
+  .navbar-brand, .nav-link, .fa-bars {
+  color: #fff;
+  }
+  
+  .navbar-brand:hover {
+    color: rgb(255, 255, 255);
+  }
+  
+  .nav-link:hover {
+    color: rgba(255, 255, 255, 0.683);
+  }
+  
+  
+  @media (max-width: 450px) {
+  #intro {
+    height: 950px !important;
+  }
+  }
+  
+  @media (min-width: 550px) and (max-width: 750px) {
+  #intro {
+    height: 1100px !important;
+  }
+  }
+  
+  @media (min-width: 800px) and (max-width: 990px) {
+  #intro {
+    height: 600px !important;
+  }
+  }
+  
+  .display-1 {
+  font-weight: 500 !important;
+  letter-spacing: 40px;
+  }
+  
+  @media (min-width: 1600px) {
+  .display-1 {
+    font-size: 10rem;
+  }
+  }
+</style>
